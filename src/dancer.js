@@ -52,7 +52,66 @@ makeDancer.prototype.setPosition = function (top, left) {
   this.$node.css(styleSettings);
 };
 
-makeDancer.prototype.lineUp = function() {
-  var middle = $('body').width() / 2;
-  this.setPosition(this.top, middle);
+makeDancer.prototype.lineUp = function(position) {
+  this.$node.stop();
+  this.$node.stop();
+  
+  var middle = $('body').height() / 2;
+  
+  this.$node.animate({
+    top: middle,
+    left: position * 40,
+  }, 'slowly');
+  // this.setPosition(this.top, middle);
 }
+
+makeDancer.prototype.moveTo = function(top, left) {
+  this.$node.stop();
+  this.$node.stop();
+  
+    this.$node.animate({
+    top: top,
+    left: left,
+  }, 'slowly');
+}
+
+makeDancer.prototype.bounce = function() {
+  // var pos = this.$node.position();
+  // var offset = this.$node.offset();
+  // var originTop = offset.top;
+  // var context = this;
+  // this.$node.animate({
+  //     top : '200px',
+  // }, 1500, function() {
+  //     context.$node.animate({
+  //         top : '-200px',
+  // }, 1500)
+  // });
+  
+  context = this.$node;
+  // context.stop();
+  var bounceIt = function() {
+    this.$node.animate({top:'+=50'}, 200);
+    this.$node.animate({top:'-=50'}, 200, bounceIt.bind(this));
+  }
+   
+  bounceIt.call(this);
+        
+  // this,$node.animate({
+  //   top:
+  //   left:
+  // }, 'slowly');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
