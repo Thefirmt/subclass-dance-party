@@ -52,15 +52,17 @@ makeDancer.prototype.setPosition = function (top, left) {
   this.$node.css(styleSettings);
 };
 
-makeDancer.prototype.lineUp = function(position) {
+makeDancer.prototype.lineUp = function(position, startLeft) {
   this.$node.stop();
   this.$node.stop();
   
   var middle = $('body').height() / 2;
+  // var pageMiddle = $('body').width() / 2;
+  var offset = position;
   
   this.$node.animate({
     top: middle,
-    left: position * 40,
+    left: startLeft + offset,
   }, 'slowly');
   // this.setPosition(this.top, middle);
 }
@@ -75,7 +77,7 @@ makeDancer.prototype.moveTo = function(top, left) {
   }, 'slowly');
 }
 
-makeDancer.prototype.bounce = function() {
+makeDancer.prototype.bounce = function(amount = 50) {
   // var pos = this.$node.position();
   // var offset = this.$node.offset();
   // var originTop = offset.top;
@@ -88,11 +90,11 @@ makeDancer.prototype.bounce = function() {
   // }, 1500)
   // });
   
-  context = this.$node;
+  // context = this.$node;
   // context.stop();
   var bounceIt = function() {
-    this.$node.animate({top:'+=50'}, 200);
-    this.$node.animate({top:'-=50'}, 200, bounceIt.bind(this));
+    this.$node.animate({top:'+='+amount}, 200);
+    this.$node.animate({top:'-='+amount}, 200, bounceIt.bind(this));
   }
    
   bounceIt.call(this);
@@ -101,6 +103,14 @@ makeDancer.prototype.bounce = function() {
   //   top:
   //   left:
   // }, 'slowly');
+}
+
+makeDancer.prototype.wave = function (position, startLeft, amount) {
+  this.lineUp(position, startLeft);
+  
+  
+  setTimeout(this.bounce.bind(this, amount), position+500);
+  
 }
 
 

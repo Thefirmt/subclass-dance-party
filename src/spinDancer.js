@@ -17,5 +17,6 @@ makeSpinDancer.prototype.step = function() {
 
 makeSpinDancer.prototype.resize = function () {
   var random = (Math.random() * 5) + 10;
+  
   this.$node.css('border-width', random+'');
 }

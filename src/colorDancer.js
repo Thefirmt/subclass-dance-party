@@ -24,8 +24,8 @@ makeColorDancer.prototype.move = function() {
   
   var context = this;
   
-  var random1 = Math.floor(Math.random() * 4);
-  var random2 = Math.floor(Math.random() * 4);
+  var random1 = Math.floor(Math.random() * 8);
+  var random2 = Math.floor(Math.random() * 8);
   
   var random3 = random1 - random2;
   var random4 = random1 - random2;
